@@ -1,0 +1,44 @@
+package perceptron;
+
+/**
+ *
+ * @author Dick
+ */
+public class Perceptron {
+    String entrada1;
+
+    public static void main(String[] args) {
+        //Prueba de que el algoritmo funciona
+        String str = "A las chicas de verdad les gusta el pollo frito";
+        //Utilizamos el metodo de encripcion e imprimimos el resultado en consola
+        System.out.println(Perceptron.encriptar( str, 15 ));
+        //Utilizamos el metodo de desencripcion con el string previamente encriptado e imprimimos
+        System.out.println(Perceptron.desencriptar(Perceptron.encriptar( str, 15), 15 ));
+    }
+
+    
+    public static String encriptar(String soriginal, int llave) {
+        llave = llave % 26 + 26;
+        StringBuilder encriptado = new StringBuilder();
+        for (char i : soriginal.toCharArray()) {
+            if (Character.isLetter(i)) {
+                if (Character.isUpperCase(i)) {
+                    encriptado.append((char) ('A' + (i - 'A' + llave) % 26 ));
+                    //Si es mayuscula, el caracter cambiara en el string encriptado a otra mayuscula
+                } else {
+                    encriptado.append((char) ('a' + (i - 'a' + llave) % 26 ));
+                    //Si es minuscula, el caracter cambiara en el string encriptado a otra minuscula
+                    //Se concatena todo para formar el string encriptado
+                }
+            } else {
+                encriptado.append(i);
+                //Si no es una letra se concatena a la cadena resultante tal y como es
+            }
+        }
+        return encriptado.toString();
+    }
+    
+    public static String desencriptar(String encriptado, int llave){
+        return encriptar(encriptado, 26-llave);
+        }
+}
