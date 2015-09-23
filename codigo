@@ -1,9 +1,5 @@
 package perceptron;
 
-/**
- *
- * @author Dick
- */
 public class Perceptron {
     String entrada1;
 
